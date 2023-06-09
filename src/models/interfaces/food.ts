@@ -1,17 +1,18 @@
 export interface Food {
   id: number,
-  names: Names,
-  category: Category,
-  macros: MacroProperty[],
-  micros: MicroProperty[],
-  allergens: Allergens[] | null,
-  vegan: boolean,
+  names: names,
   info: string,
   img: string,
+  calories: number,
+  vegan: boolean,
+  category: category,
+  macros: macroProperty[],
+  micros: microProperty[],
+  allergens: allergens[] | null,
   moreInfo: moreInfo | null
 }
 
-export enum Category {
+export enum category {
 vegetables = 'vegetables',
 fruits = 'fruits',
 grains = 'grains',
@@ -26,13 +27,13 @@ eggs = 'eggs',
 pastries = 'pastries'
 }
 
-export enum MacroNutrient {
+export enum macroNutrient {
 protein = 'protein',
 lipid = 'lipid',
 glucid = 'glucid'
 }
 
-export enum Vitamin {
+export enum vitamin {
   vitaminA = 'vitamin A',
   vitaminB = 'vitamin B',
   vitaminC = 'vitamin C',
@@ -42,7 +43,7 @@ export enum Vitamin {
 
 }
 
-export enum Mineral {
+export enum mineral {
   potassium = 'potassium',
   chlorine = 'chlorine',
   sodium = 'sodium',
@@ -60,7 +61,7 @@ export enum Mineral {
   cobalt = 'cobalt'
 }
 
-export enum AminoAcid {
+export enum aminoacid {
   histidine = 'histidine',
   isoleucine = 'isoleucine',
   leucine = 'leucine',
@@ -72,12 +73,12 @@ export enum AminoAcid {
   valine = 'valine'
 }
 
-export enum Allergens {
+export enum allergens {
   gluten = 'gluten',
   peanuts = 'peanuts',
-  treeNuts = 'tree Nuts',
+  treeNuts = 'tree nuts',
   celery = 'celery',
-  mustard = 'mmustard',
+  mustard = 'mustard',
   eggs = 'eggs',
   milk = 'milk',
   sesame = 'sesame',
@@ -89,20 +90,20 @@ export enum Allergens {
   lupin = 'lupin'
 }
 
-type Names = {en: string, es: string, fr: string}
+type names = {en: string, es: string, fr: string}
 
-type Omega3 = 'omega3'
+type omega3 = 'omega3'
 
-type Prebiotic = 'prebiotic'
+type prebiotic = 'prebiotic'
 
-type Probiotic = 'probiotic'
+type probiotic = 'probiotic'
 
-type MicroNutrient = Vitamin | Mineral | AminoAcid | Omega3 | Prebiotic | Probiotic
+type microNutrient = vitamin | mineral | aminoacid | omega3 | prebiotic | probiotic
 
-type WealthRange = 0 | 1 | 2 | 3 | 4 | 5
+type wealthRange = 0 | 1 | 2 | 3 | 4 | 5
 
-type MacroProperty = {name : MacroNutrient, wealth: WealthRange}
+type macroProperty = {name : macroNutrient, wealth: wealthRange}
 
-type MicroProperty = {name : MicroNutrient, wealth: WealthRange}
+type microProperty = {name : microNutrient, wealth: wealthRange}
 
 type moreInfo = {[key: string] : string}

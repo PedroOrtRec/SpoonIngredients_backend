@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 import indexRouter from '../../routes/index';
 import foodsRouter from '../../routes/api/foods';
-import cors from 'cors';
+import db from '../../config/database/connection';
 
 class Server {
 
@@ -16,9 +17,24 @@ class Server {
 
     constructor(){
         this.app = express();
-        this.port = process.env.Port || '3000';
+        this.port = process.env.PORT || '3000';
+        this.dbConnection();
         this.middlewares();
         this.routes();
+    }
+
+    async dbConnection(){
+        try {
+            await db.authenticate();
+            console.log('Database is online')
+        } catch (error) {
+            let message = 'Unknow Error'
+           if (error instanceof Error) {
+            message = error.message;
+           }
+           console.log({message});
+           //throw new Error( 'could not connect to database' )
+        }
     }
 
     middlewares(){
