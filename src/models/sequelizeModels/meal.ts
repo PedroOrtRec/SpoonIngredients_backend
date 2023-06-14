@@ -1,9 +1,11 @@
 import { DataTypes } from "sequelize";
-import db from "../../config/database/connection";
+import db from "../../config/database/seq.connection";
+import Category from "./category";
 
-const Meal = db.define('Meal', {
+const Meal = db.define('Meals', {
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     nombre: {
         type: DataTypes.STRING
@@ -23,6 +25,13 @@ const Meal = db.define('Meal', {
     vegan: {
         type: DataTypes.BOOLEAN
     }
+},{
+    timestamps: false
+}
+);
+
+Meal.belongsTo(Category, {
+    foreignKey: 'category_id'
 });
 
 export default Meal;

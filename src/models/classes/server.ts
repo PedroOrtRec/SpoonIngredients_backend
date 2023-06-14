@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import indexRouter from '../../routes/index';
-import foodsRouter from '../../routes/api/foods';
-import db from '../../config/database/connection';
+import mealsRouter from '../../routes/api/meals';
+import categoriesRouter from '../../routes/api/categories'
 
 class Server {
 
@@ -11,30 +11,16 @@ class Server {
     private paths = {
         index: '/',
         api: {
-            foods : '/api/foods'
+            meals : '/api/meals',
+            categories: '/api/categories'
         }
     }
 
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '3000';
-        this.dbConnection();
         this.middlewares();
         this.routes();
-    }
-
-    async dbConnection(){
-        try {
-            await db.authenticate();
-            console.log('Database is online')
-        } catch (error) {
-            let message = 'Unknow Error'
-           if (error instanceof Error) {
-            message = error.message;
-           }
-           console.log({message});
-           //throw new Error( 'could not connect to database' )
-        }
     }
 
     middlewares(){
@@ -44,7 +30,8 @@ class Server {
 
     routes(){
         this.app.use(this.paths.index, indexRouter);
-        this.app.use(this.paths.api.foods, foodsRouter);
+        this.app.use(this.paths.api.meals, mealsRouter);
+        this.app.use(this.paths.api.categories, categoriesRouter);
     }
 
     listen(){
@@ -59,3 +46,31 @@ class Server {
 }
 
 export default Server
+
+    // async dbConnection(){
+    //     try {
+    //         await seqDb.authenticate();
+    //         console.log('Database is online')
+    //     } catch (error) {
+    //         let message = 'Unknow Error'
+    //        if (error instanceof Error) {
+    //         message = error.message;
+    //        }
+    //        console.log({message});
+    //        //throw new Error( 'could not connect to database' )
+    //     }
+    // }
+
+    // async dbDisconnection(){
+    //     try {
+    //         await seqDb.close();
+    //         console.log('Database is offline')
+    //     } catch (error) {
+    //         let message = 'Unknow Error'
+    //        if (error instanceof Error) {
+    //         message = error.message;
+    //        }
+    //        console.log({message});
+    //        //throw new Error( 'could not disconnect to database' )
+    //     }
+    // }

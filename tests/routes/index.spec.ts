@@ -1,15 +1,16 @@
 import request from 'supertest';
 import Server from '../../src/models/classes/server'
+import { Application } from 'express';
 
 describe('Index', ()=> {
-    let server: Server;
+    let app: Application;
     let response: request.Response;
-    beforeAll(() => {
-        server = new Server();
+    beforeAll( () => {
+        app = new Server().getApp();
     })
     describe('GET /', () => {
         beforeAll(async () => {
-        response = await request(server.getApp()).get('/').send();
+        response = await request(app).get('/').send();
         })
         it('should response with 200 status', async () => {
             expect(response.statusCode).toBe(200);

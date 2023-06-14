@@ -1,16 +1,16 @@
-@URL = http://localhost:3000/api/foods
+@URL = http://localhost:3000/api/meals
 
 ###
 GET {{URL}}
 
 ###
-GET {{URL}}/0
+GET {{URL}}/12
 
 ###
-GET {{URL}}/category/vegetable
+GET {{URL}}/category/vegetables
 
 ###
-PUT  {{URL}}/:0
+PUT  {{URL}}/0
 Content-Type: application/json
 
 {
@@ -26,4 +26,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE
+DELETE {{URL}}/0

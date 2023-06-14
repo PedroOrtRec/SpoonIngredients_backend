@@ -1,0 +1,26 @@
+@URL = http://localhost:3000/api/categories
+
+###
+GET {{URL}}
+
+###
+GET {{URL}}/16
+
+###
+PUT  {{URL}}/0
+Content-Type: application/json
+
+{
+    "bodyContent": "bodyContent"
+}
+
+###
+POST {{URL}}
+Content-Type: application/json
+
+{
+     "bodyContent": "bodyContent"
+}
+
+###
+DELETE {{URL}}/0

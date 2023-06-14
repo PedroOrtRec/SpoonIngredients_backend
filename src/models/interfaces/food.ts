@@ -98,7 +98,9 @@ type prebiotic = 'prebiotic'
 
 type probiotic = 'probiotic'
 
-type microNutrient = vitamin | mineral | aminoacid | omega3 | prebiotic | probiotic
+type antioxidant = 'antioxidan'
+
+type microNutrient = vitamin | mineral | aminoacid | omega3 | prebiotic | probiotic | antioxidant
 
 type wealthRange = 0 | 1 | 2 | 3 | 4 | 5
 
